@@ -140,7 +140,7 @@
   
   // Получаем данные о погоде
   function fetchWeather(latitude: number, longitude: number) {
-    const weatherApiKey = 'bafb6a923587c612cd33b161014aabf5';
+    const weatherApiKey = 'ff17eb87159b2aabbe6f6a472ea94907';
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&units=metric&lang=ru`;
     axios.get(url)
       .then((response) => {
