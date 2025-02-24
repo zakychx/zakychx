@@ -20,8 +20,7 @@ export const useCurrencyStore = defineStore('currency', {
   actions: {
     async fetchRates() {
       try {
-        const response = await axios.get('https://v6.exchangerate-api.com/v6/785987889534066071f5cece/latest/KGS');
-        console.log('Ответ API rates:', response.data); // Отладочный лог
+        const response = await axios.get(`https://v6.exchangerate-api.com/v6/${import.meta.env.VITE_CURRENCY_API_KEY}/latest/KGS`);
         if (response.data && response.data.conversion_rates) {
           this.rates = response.data.conversion_rates;
           this.error = null;
@@ -35,8 +34,7 @@ export const useCurrencyStore = defineStore('currency', {
 
     async fetchCurrencies() {
       try {
-        const response = await axios.get('https://v6.exchangerate-api.com/v6/785987889534066071f5cece/codes');
-        console.log('Ответ API currencies:', response.data); // Отладочный лог
+        const response = await axios.get(`https://v6.exchangerate-api.com/v6/${import.meta.env.VITE_CURRENCY_API_KEY}/codes`);
         if (response.data && response.data.supported_codes) {
           const currencies: Currencies = {};
           response.data.supported_codes.forEach((item: string[]) => {

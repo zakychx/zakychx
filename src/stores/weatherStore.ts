@@ -20,9 +20,15 @@ export const useWeatherStore = defineStore('weather', {
       this.error = null;
 
       try {
-        const weatherApiKey = 'ff17eb87159b2aabbe6f6a472ea94907';
-        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${weatherApiKey}&units=metric&lang=ru`;
-        const response = await axios.get(url);
+        const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather`, {
+          params: {
+            lat: latitude,
+            lon: longitude,
+            appid: import.meta.env.VITE_WEATHER_API_KEY,
+            units: 'metric',
+            lang: 'ru'
+          }
+        });
         this.weather = response.data;
       } catch (err) {
         console.error('Ошибка при получении данных о погоде:', err);
